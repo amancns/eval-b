@@ -7,21 +7,16 @@ export const Content = mongoose.model(
     description: {
       type: String,
       required: true,
-      minlength: 10,
-      maxlength: 500,
     },
     mockFileLink: {
       type: String,
-      required: true,
-      minlength: 10,
-      maxlength: 255,
+      required: true
     },
     category: { type: String, required: true },
     difficultyLevel: {
-      type: String,
-      enum: ["Beginner", "Intermediate", "Advanced"],
+      type: String
     },
-    targetAudience: { type: String, enum: ["Students", "Teachers", "Parents"] },
+    targetAudience: { type: String},
     date: {type: Date}
   }),
   "Content"
