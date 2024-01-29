@@ -3,7 +3,7 @@ import mongoose from "mongoose";
 export const Content = mongoose.model(
   "Content",
   new mongoose.Schema({
-    title: { type: String, required: true, minlength: 3, maxlength: 100 },
+    title: { type: String, required: true },
     description: {
       type: String,
       required: true,
@@ -13,9 +13,7 @@ export const Content = mongoose.model(
       required: true
     },
     category: { type: String, required: true },
-    difficultyLevel: {
-      type: String
-    },
+    difficultyLevel: {type: String},
     targetAudience: { type: String},
     date: {type: Date}
   }),
