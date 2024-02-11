@@ -1,18 +1,18 @@
 import express from "express";
 import dotenv from "dotenv";
 import mongoose from "mongoose";
-import cors from 'cors';
-import { ContentRoutes } from "./Routes/Content.Routes.js";
 import { UserRoutes } from "./Routes/User.Routes.js";
+import cors from "cors";
+import countMiddleware from "./middlewares/Middleware.js";
 
 dotenv.config();
 
 const app = express();
 app.use(express.json());
 
-app.use(express.urlencoded({ extended: false }));
+app.use(countMiddleware)
 
-const  allowedOrigins = process.env.FRONTEND_URL.split(",");
+const allowedOrigins = process.env.FRONTEND_URL.split(",");
 app.use(cors({ origin: allowedOrigins }));
 
 mongoose.set("strictQuery", true);
@@ -21,11 +21,9 @@ mongoose.connect(process.env.MONGODB_URL, {
 });
 
 app.get("/", (req, res) => {
-  res.send("Hello, world!");
+  res.send("Hello world!");
 });
 
-
-ContentRoutes(app);
 UserRoutes(app);
 
 app.listen(process.env.PORT, () => {
